@@ -7,8 +7,18 @@ This project was created for learning purposes
 
 ## Sample output:
 ```json
-[{"price": "\u20ac9,950", "year": "2014", "engine_size": "1.2 Petrol", "millage": "44,739 mi", "ad_age": "3 days", "location": "Dublin"},
- {"price": "\u20ac4,950", "year": "2012", "engine_size": "1.4 Diesel", "millage": "159,100 km", "ad_age": "20 hours", "location": "Dublin"}]
+[
+    {
+      "title": "Ford Fiesta Style 1.25 60 PS  5DR",
+      "price": "\u20ac4,950",
+      "year": "2011",
+      "engine_size": "1.2 Petrol",
+      "millage": "134,000 mi",
+      "ad_age": "4 days",
+      "location": "Kildare",
+      "link": "https://www.donedeal.ie/cars-for-sale/ford-fiesta-style-1-25-60-ps-5dr/27603916?campaign=3"
+    }
+]
 ```
 
 ## Install
