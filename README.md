@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 ## Scrape some data
 The below example scrapes `5` pages of data for `Ford Fiestas` and saves the data to `cars.json`  
-See [done_deal_scraper](./done_deal_scraper.py) for specific implementation=
+See [done_deal_scraper](./done_deal_scraper.py) for specific implementation
 ```python
 if __name__ == "__main__":
     # Scrape Ford fiesta details
