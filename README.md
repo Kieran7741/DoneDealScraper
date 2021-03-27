@@ -2,6 +2,9 @@
 
 This repo contains a Beautiful Soup Scraper which scrapes car details from Done deal
 
+## Note
+This project was created for learning purposes
+
 ## Sample output:
 ```json
 [{"price": "\u20ac9,950", "year": "2014", "engine_size": "1.2 Petrol", "millage": "44,739 mi", "ad_age": "3 days", "location": "Dublin"},
