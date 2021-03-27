@@ -4,6 +4,12 @@ from bs4 import BeautifulSoup
 
 
 def extract_car_details(car):
+    """
+    Extract car details from a car card. Returns a dict with Car details
+    :param car: Car card
+    :return: {"price": "\u20ac14,950", "year": "2018", "engine_size": "1.1 Petrol",
+     "millage": "19,562 mi", "ad_age": "3 days", "location": "Cork"}
+    """
     key_info_selector = {'class': 'card__body-keyinfo'}
     year_index = 0
     engine_index = 1
@@ -26,8 +32,15 @@ def extract_car_details(car):
             "millage": millage, "ad_age": ad_age, "location": location}
 
 
-def get_done_deal_page(base_url="https://www.donedeal.ie/cars/Ford", page_number=0, query_params=''):
-
+def scrape_page(base_url="https://www.donedeal.ie/cars", page_number=0, query_params=''):
+    """
+    Scrape the provided url and page number
+    :param base_url: Url to scrape
+    :param page_number: Page number to scrape
+    :param query_params: Filters to apply
+    :return: List of scraped cars
+    """
+    # Done deal pages contain 28 cars per page
     start = 28 * (page_number-1)
 
     url = f"{base_url}?start={start}&{query_params}"
@@ -48,35 +61,56 @@ def get_done_deal_page(base_url="https://www.donedeal.ie/cars/Ford", page_number
     return car_details
 
 
-def get_all_pages(base_url, query_params=''):
+def scrape_all_pages(base_url, query_params='', max_pages=20):
+    """
+    Loop over all pages. Limited to 20 by default to prevent excessive load on server
+    :param base_url: Url to scrape
+    :param query_params: Filter results
+    :param max_pages: Max pages. Override with caution!
+    :return:
+    """
     cars = []
     page = 1
     while True:
+        # Prevent excessive scaping
+        if page > max_pages:
+            break
         print("Extacting cars from page: ", page)
         try:
-            cars.extend(get_done_deal_page(base_url=base_url, page_number=page, query_params=query_params))
+            cars.extend(scrape_page(base_url=base_url, page_number=page, query_params=query_params))
         except:
             print("Could not get details from page number: ", page)
             break
     return cars
 
 
-def get_number_of_pages(base_url, num_pages=10):
+def scrape_number_of_pages(base_url, num_pages=10, query_params=''):
+    """
+    Scrape the provided number of pages
+    :param base_url: Url to scrape
+    :param num_pages: How many pages to scrape. Try to keep this under 20 to avoid excessive load on Done deal!
+    :param query_params: Filter search with query params
+    :return: List of car details
+    """
+
     cars = []
-    for page in range(1, num_pages):
+    for page in range(1, num_pages + 1):
         print("Extacting cars from page: ", page)
         try:
-            cars.extend(get_done_deal_page(base_url=base_url, page_number=page, query_params='mileage_to=50000&transmission=Manual&price_to=15000'))
+            cars.extend(scrape_page(base_url=base_url, page_number=page, query_params=query_params))
         except:
+            # Error likely due to no more results
             return
     return cars
 
 
 if __name__ == "__main__":
+    # Scrape Ford fiesta details
     fname = "cars.json"
     url = "https://www.donedeal.ie/cars/Ford/Fiesta"
-    cars = get_number_of_pages(url, 2)
-    # cars = get_all_pages(url)
+
+    cars = scrape_number_of_pages(url, 1)
+    # cars = scrape_all_pages(url)
 
     print("Total cars found: ", len(cars))
 
