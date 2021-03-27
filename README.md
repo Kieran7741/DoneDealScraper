@@ -15,7 +15,7 @@ Note: This project has only been tested with `python3.9`
 3. Activate env `source .env/bin/activate`
 4. Pip install requirements `pip install -r requirements.txt`
 
-```shell script
+```commandline
 # Quick start
 git clone https://github.com/Kieran7741/DoneDealScraper.git && cd DoneDealScraper
 python3 -m venv .env
@@ -26,6 +26,9 @@ pip install -r requirements.txt
 ## Scrape some data
 The below example scrapes `5` pages of data for `Ford Fiestas` and saves the data to `cars.json`  
 See [done_deal_scraper](./done_deal_scraper.py) for specific implementation
+```commandline
+python done_deal_scraper.py
+```
 ```python
 if __name__ == "__main__":
     # Scrape Ford fiesta details
