@@ -1,3 +1,4 @@
 .env/
 .idea/
 cars.json
+.ipynb_checkpoints/
