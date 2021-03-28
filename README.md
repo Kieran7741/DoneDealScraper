@@ -59,3 +59,9 @@ if __name__ == "__main__":
         json.dump(cars, outfile)
 ```
 
+## View the data with Jupyter Lab
+Lauch `jupyter-lab` with:
+```commandline
+jupyter-lab
+```
+Some sample notebooks can be found in the `notebooks` directory
